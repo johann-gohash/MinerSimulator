@@ -1,0 +1,82 @@
+{
+  "miner_type": "s17",
+  "vardiff_timeout": 16,
+  "mining": {
+    "configure": {
+      "request": {
+        "id": 1,
+        "method": "mining.configure",
+        "params": [
+          ["version-rolling"],
+          {
+            "version-rolling.mask": "1fffe000",
+            "version-rolling.min-bit-count": 16
+          }
+        ]
+      },
+      "expected_response": {
+        "result_response": {
+          "error": null,
+          "id": 1,
+          "result": {
+            "version-rolling": true,
+            "version-rolling.mask": "1fffe000"
+          }
+        },
+        "method_response": {
+          "id": null,
+          "method": "mining.set_version_mask",
+          "params": ["1fffe000"]
+        }
+      }
+    },
+    "subscribe": {
+      "request": {
+        "id": 2,
+        "method": "mining.subscribe",
+        "params": ["(S17) /Tue May 24 12:32:32 CST 2022"]
+      },
+      "expected_response": {
+        "method_response": {
+          "id": null,
+          "method": "mining.set_difficulty",
+          "params": [8192]
+        },
+        "result_response": {
+          "error": null,
+          "id": 2,
+          "result": [
+            [
+              ["mining.notify", "1"],
+              ["mining.set_difficulty", "1"]
+            ],
+            "1",
+            8
+          ]
+        }
+      }
+    },
+    "authorize": {
+      "request": {
+        "id": 3,
+        "method": "mining.authorize",
+        "params": ["gh2022", "123"]
+      },
+      "expected_response": {
+        "result_response": {
+          "id": 3,
+          "result": false,
+          "error": null
+        },
+        "method_response": {}
+      }
+    },
+    "submit": {
+      "request": {},
+      "expected_response": {
+        "result_response": {},
+        "method_response": {}
+      }
+    }
+  }
+}
