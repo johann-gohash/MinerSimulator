@@ -1,41 +1,41 @@
 <!-- the .webp image must be in a public repository to be properly loaded-->
 <div align="center">
     <img width="776" height="376" src="https://raw.githubusercontent.com/johannsuarez/johannsuarez/main/cover.webp">
-    <h1 align="center">bitcoin mining simulator</h1>
+    <h1 align="center">Bitcoin Mining Simulator</h1>
     <img src="https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square"  alt="standard-readme compliant">
 
 </div><br/>
 
 <div>
-  <font>a testing suite as part of development operations to test
+  <font>A testing suite as part of development operations to test
       the quality of software we write for bitcoin miners.</font>
 </div>
 
-## table of contents
+## Table of Contents
 
 
-- [install](#install)
-- [usage](#usage)
-- [maintainers](#maintainers)
-- [contributing](#contributing)
-- [license](#license)
+- [Install](#Install)
+- [Usage](#Usage)
+- [Maintainers](#Maintainers)
+- [Contributing](#Contributing)
+- [License](#License)
 
 
-## install
+## Install
 
-1. clone this repository.
-2. cd into the repository root and run `go install`. the binary will be installed in the /bin directory of your gopath ( check with ```go env``` )
-3. the application requires two environment variables, $**block_template_dir** and $**miner_template_dir**. $**block_template_dir must** contain the path to the .json block templates to be used by the bitcoin daemon simulator. 
-4. here's are examples on how you set both variables with fish and bash.
+1. Clone this repository.
+2. cd into the repository root and run `go install`. The binary will be installed in the /bin directory of your gopath ( check with ```go env``` )
+3. The application requires two environment variables, $**block_template_dir** and $**miner_template_dir**. $**block_template_dir must** contain the path to the .json block templates to be used by the bitcoin daemon simulator. 
+4. Here are examples on how you set both variables with fish and bash.
 
-for bash: 
+For Bash: 
 ```
 export block_template_dir="/home/user/gohash-miner-simulator/data/bitcoind/block_templates"
 
 export miner_template_dir="/home/user/gohash-miner-simulator/data/mining"
 ```
 
-for fish:
+For Fish:
 ```
 set -ux block_template_dir "/home/user/gohash-miner-simulator/data/bitcoind/block_templates"
 
@@ -43,17 +43,17 @@ set -ux miner_template_dir "/home/user/gohash-miner-simulator/data/mining"
 ```
 
 
-## usage
+## Usage
 
-### ⛏️ mining simulation
-to create several instances of simulated asic miners, provide
+### ⛏️  Mining Simulation
+To create several instances of simulated asic miners, provide
 the program with the "minerclient" argument.
 
 ```
 gohash_miner_simulator minerclient 
 ```
 
-you can tweak the simulation parameters using several flags as enumerated here.
+You can tweak the simulation parameters using several flags as enumerated here.
 
 
 ```
@@ -65,16 +65,16 @@ flags:
   -p, --port uint16         corresponding port, defaults to 60000 (default 60000)
   -s, --server string       stratum url or public ip address, defaults to localhost. (default "127.0.0.1")
 ```
-shown above are the short form of each flag, the long form, the data type expected, and the description.
+Shown above are the short form of each flag, the long form, the data type expected, and the description.
 
 [ under construction ]
 
-### 💻 bitcoin daemon simulator
+### 💻 Bitcoin Daemon Simulator
 
-simulates getblocktemplate. a local http server will start that dispenses
+Simulates getblocktemplate. A local HTTP server will start that dispenses
 block templates when the endpoint receives the appropriate post request.
 
-possible flags and arguments can be viewed using `gohash_miner_simulator bitcoind -h`.
+Possible flags and arguments can be viewed using `gohash_miner_simulator bitcoind -h`.
 
 ```
 flags:
@@ -84,7 +84,7 @@ flags:
 ```
 
 
-run the bitcoind simulator by providing a name and password pair and a port number.
+Run the bitcoind simulator by providing a name and password pair and a port number.
 ```
 gohash_miner_simulator bitcoind -a "edgar_tool:pass123" -p 4000
 ```
@@ -94,31 +94,31 @@ gohash_miner_simulator bitcoind -a "edgar_tool:pass123" -p 4000
 </div><br/>
           
 
-with the above credentials, we should successfully get a block template with this curl command.
+With the above credentials, we should successfully get a block template with this curl command.
 ```
 curl --user edgar_tool:pass123 --data-binary '{"method":"getblocktemplate","params": [{"rules": ["segwit"]}],"id":1}' -h 'content-type: text/plain;' http://127.0.0.1:4000/
 ```
 
-## maintainers
+## Maintainers
 
 [@johann-suarez](https://github.com/johann-gohash)
 
-## contributing
+## Contributing
 
-feel free to dive in! [open an issue](https://github.com/gohash-software/gohash-miner-simulator/issues/new) or submit prs.
+Feel free to dive in! [open an issue](https://github.com/gohash-software/gohash-miner-simulator/issues/new) or submit prs.
 
-standard readme follows the [contributor covenant](http://contributor-covenant.org/version/1/3/0/) code of conduct.
+Standard readme follows the [contributor covenant](http://contributor-covenant.org/version/1/3/0/) code of conduct.
 
 <!-- 
 note: 
 you need to set up an account first on opencollective.com to dynamically generate an image of all contributors
 
-### contributors
+### Contributors
 
 this project exists thanks to all the people who contribute. 
 <a href="https://github.com/gohash-software/gohash-miner-simulator/graphs/contributors"><img src="https://opencollective.com/standard-readme/contributors.svg?width=890&button=false" /></a>
 -->
 
-## license
+## License
 
 [mit](license) © gohash team
